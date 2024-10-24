@@ -1,0 +1,85 @@
+Баг № 1
+Заголовок: Поле не возвращает список строк при вводе текста с разделителем
+Автор: Ольга Г.
+Метки: Функционал
+Серьезность: S1 Блокирующая (Blockad)
+Приоритет: Высокий (Highest)
+Шаги воспроизведения:
+
+@pytest.mark.parametrize(
+    'string, delimeter, result',
+    [
+        ("1:2:3", ":", "1, 2, 3, 4"), #позитивная
+        ("", "", "") #негативная
+    ],
+)
+def test_to_list_positive_and_negative(string, delimeter, result):
+    res = processor.to_list(string, delimeter)
+    assert res == result
+
+
+Ожидаемый результат:
+ 1 позитивная проверка:       "1, 2, 3, 4"
+ 2 негативная проверка:       "" 
+
+Фактический результат:
+ 1 позитивная проверка:       AssertionError: assert ['1', '2', '3'] == '1, 2, 3, 4'
+ 2 негативная проверка:       AssertionError: assert [] == ''
+
+
+Баг № 2
+Заголовок: Поле не возвращает `False`, если строка не заканчивается заданным символом
+Автор: Ольга Г.
+Метки: Функционал
+Серьезность: S1 Блокирующая (Blockad)
+Приоритет: Высокий (Highest)
+Шаги воспроизведения:
+
+@pytest.mark.parametrize(
+    'string, symbol, result',
+    [
+        ("Текст", "Т", True), #позитивная
+        ("Текст", "Р", False) #негативная
+    ],
+)
+def test_end_with_positive_and_negative(string, symbol, result):
+    res = processor.end_with(string, symbol)
+    assert res == result
+
+Ожидаемый результат:
+ 1 позитивная проверка:       True
+ 2 негативная проверка:       False
+
+Фактический результат:
+ 2 негативная проверка:       assert False == True
+
+
+Баг № 3
+Заголовок: Не корректно преобразует список элементов в строку с указанным разделителем
+Автор: Ольга Г.
+Метки: Функционал
+Серьезность: S1 Блокирующая (Blockad)
+Приоритет: Высокий (Highest)
+Шаги воспроизведения:
+
+@pytest.mark.parametrize(
+    'lst, joiner, result',
+    [
+        ("1,2,3,4", "", "1, 2, 3, 4"), #позитивная
+        ("Sky,Pro", "", "Sky, Pro"), #позитивная
+        ("Sky, Pro", "-", "Sky-Pro") #позитивная
+    ],
+)
+def test_list_to_string_positive_and_negative(lst, joiner, result):
+    res = processor.list_to_string(lst, joiner)
+    assert res == result
+
+Ожидаемый результат:
+ 1 позитивная проверка:       "1, 2, 3, 4"
+ 2 позитивная проверка:       "Sky, Pro"
+ 3 позитивная проверка:       "Sky-Pro"
+
+Фактический результат:
+ 1 позитивная проверка:       AssertionError: assert '1,2,3,4'
+ 2 позитивная проверка:       AssertionError: assert 'Sky,Pro'
+ 3 позитивная проверка:       AssertionError: assert 'S-k-y-,- -P-r-o'
