@@ -17,7 +17,6 @@ def test_to_list_positive_and_negative(string, delimeter, result):
     res = processor.to_list(string, delimeter)
     assert res == result
 
-
 Ожидаемый результат:
  1 позитивная проверка:       "1, 2, 3, 4"
  2 негативная проверка:       "" 
