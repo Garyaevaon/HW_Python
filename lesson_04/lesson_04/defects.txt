@@ -24,7 +24,7 @@ def test_to_list_positive_and_negative(string, delimeter, result):
 
 
 
-Баг № 2
+Баг № 3
 Заголовок: Метод некоректно обрабатывает входные данные, приводя к ошибкам.
 Автор: Ольга Г.
 Метки: Функционал
@@ -55,5 +55,4 @@ def test_list_to_string_positive_and_negative(lst, joiner, result):
  2 позитивная проверка:       E       AssertionError: assert 'SkyPro' == 'Sky, Pro'
                               E         - Sky, Pro
                               E         ?    --
-
                               E         + SkyPro
