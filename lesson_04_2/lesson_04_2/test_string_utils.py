@@ -113,4 +113,5 @@ def test_is_empty_positive_and_negative(string, result):
 )
 def test_list_to_string_positive_and_negative(lst, joiner, result):
     res = processor.list_to_string(lst, joiner)
+
     assert res == result

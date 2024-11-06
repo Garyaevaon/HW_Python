@@ -55,4 +55,5 @@ def test_list_to_string_positive_and_negative(lst, joiner, result):
  2 позитивная проверка:       E       AssertionError: assert 'SkyPro' == 'Sky, Pro'
                               E         - Sky, Pro
                               E         ?    --
+
                               E         + SkyPro
