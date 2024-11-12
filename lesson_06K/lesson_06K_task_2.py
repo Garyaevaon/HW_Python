@@ -1,0 +1,31 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+browser = webdriver.Chrome()
+
+browser.get(
+    "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html"
+    )
+
+waits = browser.find_element(
+    By.CSS_SELECTOR, "#delay"
+    )
+waits.clear()
+waits.send_keys("45")
+
+button1 = browser.find_element(
+    By.XPATH, '//span[text()="7"]').click()
+button2 = browser.find_element(
+    By.XPATH, '//span[text()="+"]').click()
+button3 = browser.find_element(
+    By.XPATH, '//span[text()="8"]').click()
+button4 = browser.find_element(
+    By.XPATH, '//span[text()="="]').click()
+
+waiter = WebDriverWait(browser, 50, 0.1)
+waiter.until(
+    EC.text_to_be_present_in_element((By.CSS_SELECTOR, "div.screen"), "15"))
+
+assert "15" in browser.find_element(By.CSS_SELECTOR, "div.screen").text
