@@ -53,4 +53,7 @@ print(txt)
 
 browser.quit()
 
-assert "$58.29" in txt
+def test_text():
+    assert "$58.29" in txt
+
+browser.quit()
